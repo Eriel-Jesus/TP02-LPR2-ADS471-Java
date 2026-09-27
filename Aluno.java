@@ -1,3 +1,5 @@
+//Trabalho acadêmico realizado por Brandon e Eriel, para entrega de atividade//
+
 import java.util.UUID;
 
 public class Aluno {
