@@ -1,6 +1,6 @@
 # TP02 - LPR2 - ADS471 - Java
 
-Este projeto consiste em uma aplicação Java baseada em Swing para o cadastro de alunos em memória. A solução foi desenvolvida com foco na organização de dados em uma classe modelo e na criação de uma interface gráfica responsável pela coleta, validação e exibição das informações.
+Este projeto consiste em uma aplicação Java baseada em Swing para o cadastro de alunos em memória. A solução foi desenvolvida com foco na organização de dados em uma classe modelo e na criação de uma interface gráfica responsável pela coleta, validação e exibição das informações. Elaborado por Brandon e Eriel.
 
 ## Objetivo
 
