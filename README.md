@@ -89,28 +89,11 @@ Ao acionar esse botão, o sistema verifica se a lista de alunos está vazia. Cas
 ### Botão `Sair`
 Esse botão encerra a execução do programa por meio de `System.exit(0)`.
 
-## Método principal
-
-A aplicação é iniciada pelo método `main`, que executa a criação da interface em uma thread correta para Swing:
-
-```java
-SwingUtilities.invokeLater(new Runnable() {
-    @Override
-    public void run() {
-        new FormularioAluno().setVisible(true);
-    }
-});
-```
-
-Esse mecanismo é necessário para garantir uma execução adequada da interface gráfica e evitar problemas de atualização da UI em Java Swing.
-
 ## Demonstração da aplicação
 
 O GIF abaixo mostra o programa em execução:
 
-![Demonstração do programa em execução](docs/demo.gif)
-
-> Para adicionar ou substituir a demonstração, salve o arquivo GIF em `docs/demo.gif`.
+![Demonstração do programa em execução](https://github.com/Eriel-Jesus/TP02-LPR2-ADS471-Java/blob/main/Gif%20de%20Execu%C3%A7%C3%A3o.gif)
 
 ## Considerações finais
 
