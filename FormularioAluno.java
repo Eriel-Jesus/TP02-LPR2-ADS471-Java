@@ -1,3 +1,5 @@
+//Trabalho acadêmico realizado por Brandon e Eriel, para entrega de atividade//
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
