@@ -1,79 +1,97 @@
 # TP02 - LPR2 - ADS471 - Java
 
-Este projeto é uma aplicação Java Swing para cadastrar alunos em memória. A interface permite informar nome, idade e endereço, salvar o cadastro e visualizar os alunos já registrados.
+Este projeto consiste em uma aplicação Java baseada em Swing para o cadastro de alunos em memória. A solução foi desenvolvida com foco na organização de dados em uma classe modelo e na criação de uma interface gráfica responsável pela coleta, validação e exibição das informações.
 
-## Estrutura dos arquivos
+## Objetivo
 
-### 1. `Aluno.java`
-Este arquivo define a classe `Aluno`, que representa o modelo de dados do sistema.
+O sistema tem como finalidade permitir que o usuário informe os dados de um aluno, valide essas informações e armazene os registros temporariamente durante a execução da aplicação. O projeto ilustra, de forma prática, o uso de classes, objetos, listas, eventos de interface gráfica e manipulação de dados em Java.
 
-A classe possui:
-- `UUID uuid`: identificador único gerado automaticamente para cada aluno.
+## Estrutura do projeto
+
+O repositório contém dois arquivos principais:
+
+- `Aluno.java`: representa o modelo de dados do aluno.
+- `FormularioAluno.java`: implementa a interface gráfica e os mecanismos de interação com o usuário.
+
+## Arquivo `Aluno.java`
+
+A classe `Aluno` define a estrutura de dados utilizada pelo sistema. Cada instância representa um aluno com os seguintes atributos:
+
+- `UUID uuid`: identificador único gerado automaticamente para cada objeto.
 - `String nome`: nome do aluno.
 - `int idade`: idade do aluno.
-- `String endereco`: endereço do aluno.
+- `String endereco`: endereço residencial do aluno.
 
-Também contém os métodos de acesso (`get` e `set`) para cada atributo. A classe possui dois construtores:
-- `Aluno()`: cria um objeto vazio e gera um UUID automaticamente.
-- `Aluno(String nome, int idade, String endereco)`: cria um aluno já preenchido com os dados informados.
+Além dos atributos, a classe oferece métodos de acesso (`get` e `set`) para cada campo, permitindo a leitura e atualização dos dados de forma encapsulada. Isso mantém a integridade dos valores e facilita a manipulação dos objetos em outras partes do programa.
 
-Esse arquivo é o "modelo" do sistema: ele guarda as informações do aluno e serve como estrutura de dados principal.
+A classe possui dois construtores:
 
-### 2. `FormularioAluno.java`
-Este arquivo é a interface gráfica da aplicação. Ele cria a janela principal da tela usando Swing e controla os eventos dos botões.
+- `Aluno()`: cria uma instância vazia e gera um UUID automaticamente.
+- `Aluno(String nome, int idade, String endereco)`: cria um objeto já inicializado com os dados do aluno.
 
-#### Componentes da interface
-A janela contém:
-- `txtNome`: campo para o nome.
-- `txtIdade`: campo para a idade.
-- `txtEndereco`: campo para o endereço.
-- `btnOk`: grava o aluno cadastrado.
-- `btnLimpar`: limpa os campos de entrada.
-- `btnMostrar`: mostra os alunos cadastrados.
-- `btnSair`: encerra a aplicação.
+Em termos de arquitetura, `Aluno.java` funciona como o modelo do sistema, ou seja, a representação dos dados que serão armazenados e exibidos pela interface.
 
-#### Como a janela é montada
-No construtor da classe `FormularioAluno`, são criados:
-- um painel superior com `GridLayout(3, 2)` para os campos de nome, idade e endereço;
-- um painel inferior com `GridLayout(1, 4)` para os botões;
-- a janela principal `JFrame` com título "TP02 - LPR2";
-- o layout `BorderLayout` para organizar os painéis.
+## Arquivo `FormularioAluno.java`
 
-#### Lista de alunos em memória
-A classe mantém uma lista chamada `listaAlunos`:
+A classe `FormularioAluno` estende `JFrame`, sendo responsável pela criação da janela principal da aplicação. Ela organiza os componentes gráficos e trata os eventos gerados pelo usuário, como cadastro, limpeza, visualização e encerramento do programa.
+
+### Componentes da interface
+
+A tela contém os seguintes elementos:
+
+- `txtNome`: campo para inserção do nome.
+- `txtIdade`: campo para inserção da idade.
+- `txtEndereco`: campo para inserção do endereço.
+- `btnOk`: botão para confirmar o cadastro do aluno.
+- `btnLimpar`: botão para limpar os campos digitados.
+- `btnMostrar`: botão para exibir os alunos cadastrados.
+- `btnSair`: botão para encerrar a aplicação.
+
+### Organização visual da janela
+
+A interface é montada em um `BorderLayout`, com:
+
+- um painel superior em `GridLayout(3, 2)`, contendo os campos de entrada;
+- um painel inferior em `GridLayout(1, 4)`, contendo os botões de ação.
+
+A janela recebe o título `TP02 - LPR2` e é centralizada na tela com `setLocationRelativeTo(null)`.
+
+### Estrutura de armazenamento
+
+A classe mantém uma lista de objetos `Aluno` em memória:
 
 ```java
 private List<Aluno> listaAlunos;
 ```
 
-Essa lista é inicializada com `new ArrayList<>()` e armazena os objetos `Aluno` enquanto o programa estiver em execução. Ou seja, os dados ficam salvos somente na memória da aplicação e não são gravados em arquivo ou banco de dados.
+Essa lista é inicializada com `new ArrayList<>()` e armazena os alunos cadastrados enquanto a aplicação permanece em execução. Importante destacar que os dados não são gravados em arquivo, banco de dados ou persistência externa; eles existam apenas na memória da aplicação.
 
-#### Fluxo de funcionamento
+## Funcionamento dos botões
 
-##### Botão `Ok`
-Quando o usuário clica no botão `Ok`, o programa:
-1. lê os textos digitados nos campos;
-2. valida se nome, idade e endereço não estão vazios;
-3. tenta converter a idade para `int`;
-4. verifica se a idade é maior que zero;
-5. cria um novo objeto `Aluno`; e
-6. adiciona esse aluno na lista `listaAlunos`.
+### Botão `Ok`
+Ao clicar em `Ok`, o sistema realiza as seguintes ações:
 
-Se algum campo estiver vazio ou a idade for inválida, aparece uma mensagem de alerta com `JOptionPane`.
+1. lê os valores digitados nos campos;
+2. verifica se os campos obrigatórios foram preenchidos;
+3. converte a idade para `int`;
+4. valida se a idade é maior que zero;
+5. cria um novo objeto `Aluno`;
+6. adiciona esse aluno à lista `listaAlunos`.
 
-##### Botão `Limpar`
-Esse botão chama o método `limparCampos()`, que apaga o texto dos campos e devolve o foco para o campo de nome.
+Se algum dado for inválido, é exibida uma mensagem de alerta com `JOptionPane`, informando o usuário do problema.
 
-##### Botão `Mostrar`
-Esse botão verifica se a lista está vazia. Se estiver vazia, mostra uma mensagem informando que não há alunos cadastrados.
+### Botão `Limpar`
+Esse botão chama o método `limparCampos()`, que apaga o conteúdo dos campos e retorna o foco para o campo de nome.
 
-Se houver alunos, ele percorre a lista e monta uma mensagem com o identificador UUID e o nome de cada estudante, exibindo tudo em um popup.
+### Botão `Mostrar`
+Ao acionar esse botão, o sistema verifica se a lista de alunos está vazia. Caso esteja, exibe uma mensagem informando que nenhum aluno foi cadastrado. Caso contrário, percorre a lista e apresenta, em uma caixa de diálogo, o identificador UUID e o nome de cada aluno cadastrado.
 
-##### Botão `Sair`
-Esse botão encerra a aplicação com `System.exit(0)`.
+### Botão `Sair`
+Esse botão encerra a execução do programa por meio de `System.exit(0)`.
 
-#### Método principal
-O método `main` inicia a interface gráfica da seguinte forma:
+## Método principal
+
+A aplicação é iniciada pelo método `main`, que executa a criação da interface em uma thread correta para Swing:
 
 ```java
 SwingUtilities.invokeLater(new Runnable() {
@@ -84,26 +102,27 @@ SwingUtilities.invokeLater(new Runnable() {
 });
 ```
 
-Ele é importante porque executa a criação da janela na thread correta do Swing, garantindo que a interface funcione de modo seguro e responsivo.
+Esse mecanismo é necessário para garantir uma execução adequada da interface gráfica e evitar problemas de atualização da UI em Java Swing.
 
-## Resumo do funcionamento geral
-O programa funciona como um cadastro simples de alunos:
-- o usuário preenche os campos da tela;
-- o sistema valida os dados;
-- cria um objeto `Aluno`;
-- guarda esse aluno em uma lista em memória;
-- permite limpar os campos ou exibir a lista de alunos cadastrados;
-- e fecha a aplicação quando solicitado.
+## Considerações finais
 
-## Observação importante
-Este projeto não salva os alunos em disco. Todos os registros são mantidos apenas enquanto a aplicação está aberta. Se o programa for fechado, a lista é perdida.
+O projeto demonstra, de maneira simples e didática, a integração entre:
 
-## Como executar
-Para executar a aplicação, compile e rode a classe `FormularioAluno`:
+- classes de modelo;
+- interface gráfica com Swing;
+- validação de entrada;
+- uso de coleções para armazenamento temporário;
+- tratamento de eventos e interação com o usuário.
+
+Seu funcionamento principal consiste em receber informações do aluno, validá-las, armazená-las em memória e apresentá-las ao usuário conforme solicitado.
+
+## Execução
+
+Para executar o programa, é necessário compilar os arquivos Java e rodar a classe principal `FormularioAluno`:
 
 ```bash
 javac FormularioAluno.java Aluno.java
 java FormularioAluno
 ```
 
-Se estiver usando uma IDE, basta abrir o projeto e rodar a classe `FormularioAluno` como aplicação Java.
+Em uma IDE Java, basta abrir o projeto e executar a classe `FormularioAluno` como aplicação.
