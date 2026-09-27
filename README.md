@@ -1,10 +1,10 @@
 # TP02 - LPR2 - ADS471 - Java
 
-Este projeto consiste em uma aplicação Java baseada em Swing para o cadastro de alunos em memória. A solução foi desenvolvida com foco na organização de dados em uma classe modelo e na criação de uma interface gráfica responsável pela coleta, validação e exibição das informações. Elaborado por Brandon e Eriel.
+Este projeto consiste em uma aplicação Java baseada em Swing para o cadastro de alunos em memória. A solução foi desenvolvida com foco na organização de dados em uma classe modelo e na criação de uma interface gráfica simples e funcional.
 
 ## Objetivo
 
-O sistema tem como finalidade permitir que o usuário informe os dados de um aluno, valide essas informações e armazene os registros temporariamente durante a execução da aplicação. O projeto ilustra, de forma prática, o uso de classes, objetos, listas, eventos de interface gráfica e manipulação de dados em Java.
+O sistema tem como finalidade permitir que o usuário informe os dados de um aluno, valide essas informações e armazene os registros temporariamente durante a execução da aplicação. O projeto ilustra conceitos básicos de orientação a objetos, interface gráfica e manipulação de coleções em Java.
 
 ## Estrutura do projeto
 
@@ -22,7 +22,7 @@ A classe `Aluno` define a estrutura de dados utilizada pelo sistema. Cada instâ
 - `int idade`: idade do aluno.
 - `String endereco`: endereço residencial do aluno.
 
-Além dos atributos, a classe oferece métodos de acesso (`get` e `set`) para cada campo, permitindo a leitura e atualização dos dados de forma encapsulada. Isso mantém a integridade dos valores e facilita a manipulação dos objetos em outras partes do programa.
+Além dos atributos, a classe oferece métodos de acesso (`get` e `set`) para cada campo, permitindo a leitura e atualização dos dados de forma encapsulada. Isso mantém a integridade dos valores e facilita a manipulação dos objetos.
 
 A classe possui dois construtores:
 
@@ -33,7 +33,7 @@ Em termos de arquitetura, `Aluno.java` funciona como o modelo do sistema, ou sej
 
 ## Arquivo `FormularioAluno.java`
 
-A classe `FormularioAluno` estende `JFrame`, sendo responsável pela criação da janela principal da aplicação. Ela organiza os componentes gráficos e trata os eventos gerados pelo usuário, como cadastro, limpeza, visualização e encerramento do programa.
+A classe `FormularioAluno` estende `JFrame`, sendo responsável pela criação da janela principal da aplicação. Ela organiza os componentes gráficos e trata os eventos gerados pelo usuário, como o cadastro, a limpeza, a exibição e o encerramento da aplicação.
 
 ### Componentes da interface
 
@@ -64,7 +64,7 @@ A classe mantém uma lista de objetos `Aluno` em memória:
 private List<Aluno> listaAlunos;
 ```
 
-Essa lista é inicializada com `new ArrayList<>()` e armazena os alunos cadastrados enquanto a aplicação permanece em execução. Importante destacar que os dados não são gravados em arquivo, banco de dados ou persistência externa; eles existam apenas na memória da aplicação.
+Essa lista é inicializada com `new ArrayList<>()` e armazena os alunos cadastrados enquanto a aplicação permanece em execução. Importante destacar que os dados não são gravados em arquivo, banco de dados ou qualquer outro meio persistente.
 
 ## Funcionamento dos botões
 
@@ -84,7 +84,7 @@ Se algum dado for inválido, é exibida uma mensagem de alerta com `JOptionPane`
 Esse botão chama o método `limparCampos()`, que apaga o conteúdo dos campos e retorna o foco para o campo de nome.
 
 ### Botão `Mostrar`
-Ao acionar esse botão, o sistema verifica se a lista de alunos está vazia. Caso esteja, exibe uma mensagem informando que nenhum aluno foi cadastrado. Caso contrário, percorre a lista e apresenta, em uma caixa de diálogo, o identificador UUID e o nome de cada aluno cadastrado.
+Ao acionar esse botão, o sistema verifica se a lista de alunos está vazia. Caso esteja, exibe uma mensagem informando que nenhum aluno foi cadastrado. Caso contrário, percorre a lista e apresenta os dados dos alunos cadastrados.
 
 ### Botão `Sair`
 Esse botão encerra a execução do programa por meio de `System.exit(0)`.
@@ -103,6 +103,14 @@ SwingUtilities.invokeLater(new Runnable() {
 ```
 
 Esse mecanismo é necessário para garantir uma execução adequada da interface gráfica e evitar problemas de atualização da UI em Java Swing.
+
+## Demonstração da aplicação
+
+O GIF abaixo mostra o programa em execução:
+
+![Demonstração do programa em execução](docs/demo.gif)
+
+> Para adicionar ou substituir a demonstração, salve o arquivo GIF em `docs/demo.gif`.
 
 ## Considerações finais
 
